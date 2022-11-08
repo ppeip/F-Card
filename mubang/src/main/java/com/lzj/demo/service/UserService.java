@@ -11,7 +11,7 @@ import java.util.List;
 public interface UserService {
 
     List<User> queryUser();
-    User queryUserByName(String UID);
+    User queryUserByUid(String UID);
     boolean insertUser(User user);
     boolean updateUser(User user);
     boolean deleteUser(User user);

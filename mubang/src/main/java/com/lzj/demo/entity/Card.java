@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  * @version 1.0
  */
 @Data
-//@Component
+@Component
 @NoArgsConstructor
 @AllArgsConstructor
 public class Card {

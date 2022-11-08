@@ -21,6 +21,7 @@ import java.util.Map;
 public class CardController {
     @Autowired
     private CardService cardService;
+
     @RequestMapping(value = "/listcard", method = RequestMethod.GET)
     private Map<String,Object> listCard(){
         Map<String,Object> modelMap = new HashMap<>();
@@ -28,6 +29,9 @@ public class CardController {
         modelMap.put("cardList",list);
         return modelMap;
     }
+
+
+
     @RequestMapping(value = "/getcardbyname",method = RequestMethod.GET)
     private Map<String,Object> getCardByName(String cardName){
         Map<String,Object> modelMap = new HashMap<>();

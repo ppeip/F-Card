@@ -25,6 +25,7 @@ class CardDaoTest {
     private CardDao cardDao;
 
     @Test
+    @Ignore
     void queryCard() {
         List<Card> cardList = cardDao.queryCard();
         assertEquals(1,cardList.size());
@@ -36,7 +37,6 @@ class CardDaoTest {
     }
 
     @Test
-    @Ignore
     void insertCard() {
         Card card = new Card();
         card.setAbility1(100);

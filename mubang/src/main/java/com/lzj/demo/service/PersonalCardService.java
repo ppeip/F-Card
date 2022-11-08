@@ -1,6 +1,7 @@
 package com.lzj.demo.service;
 
 import com.lzj.demo.entity.PersonalCard;
+import com.lzj.demo.entity.User;
 
 import java.util.List;
 
@@ -15,4 +16,5 @@ public interface PersonalCardService {
     boolean insertPersonalCard(PersonalCard personalCard);
     boolean updatePersonalCard(PersonalCard personalCard);
     boolean deletePersonalCard(PersonalCard personalCard);
+    PersonalCard rollCard(User user);
 }

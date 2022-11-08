@@ -14,7 +14,7 @@ import java.util.List;
 @Repository
 public interface UserDao {
     List<User> queryUser();
-    User queryUserByName(String UID);
+    User queryUserByUid(String UID);
     int insertUser(User user);
     int updateUser(User user);
     int deleteUser(User user);

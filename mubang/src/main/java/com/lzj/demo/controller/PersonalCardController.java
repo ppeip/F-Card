@@ -1,6 +1,7 @@
 package com.lzj.demo.controller;
 
 import com.lzj.demo.entity.PersonalCard;
+import com.lzj.demo.entity.User;
 import com.lzj.demo.service.PersonalCardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,11 +14,11 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author xcp
- * @version 1.0
+ * @author lzj
+ * @version 2.0
  */
 @RestController
-@RequestMapping("/superadmin")
+@RequestMapping("/personalCard")
 public class PersonalCardController {
     @Autowired
     private PersonalCardService personalCardService;
@@ -28,7 +29,7 @@ public class PersonalCardController {
         modelMap.put("personalCardList",list);
         return modelMap;
     }
-    @RequestMapping(value = "/getpersonalcardbyname",method = RequestMethod.GET)
+    @RequestMapping(value = "/getpersonalcardbyuid",method = RequestMethod.GET)
     private Map<String,Object> getPersonalCardByName(String UID){
         Map<String,Object> modelMap = new HashMap<>();
         PersonalCard personalCard = personalCardService.queryPersonalCardByName(UID);
@@ -53,4 +54,11 @@ public class PersonalCardController {
         modelMap.put("success",personalCardService.deletePersonalCard(personalCard));
         return modelMap;
     }
+    @RequestMapping(value = "/rollpersonalcard",method = RequestMethod.POST)
+    private Map<String,Object> rollPersonalCard(@RequestBody User user){
+        Map<String,Object> modelMap = new HashMap<>();
+        modelMap.put("personalCard",personalCardService.rollCard(user));
+        return modelMap;
+    }
+
 }

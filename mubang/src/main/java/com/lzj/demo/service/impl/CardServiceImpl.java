@@ -88,40 +88,4 @@ public class CardServiceImpl implements CardService {
         }
     }
 
-//    @Transactional
-//    @Override
-//    public boolean rollCard(Integer influence) {
-//        if (influence == 0) {
-//            try {
-//                Card card;
-//                List<Card> cardList = cardDao.queryCard();
-//                double x = Math.random() * influence;
-//                if (x < 100) {
-//                    do {
-//                        card = cardList.get((int) (Math.random() * cardList.size()));
-//                    } while (!card.getRank().equals("讲师"));
-//                } else if (x < 1000) {
-//                    do {
-//                        card = cardList.get((int) (Math.random() * cardList.size()));
-//                    } while (!card.getRank().equals("副教授"));
-//                } else if (x < 10000) {
-//                    do {
-//                        card = cardList.get((int) (Math.random() * cardList.size()));
-//                    } while (!card.getRank().equals("教授"));
-//                } else if (x < 100000) {
-//                    do {
-//                        card = cardList.get((int) (Math.random() * cardList.size()));
-//                    } while (!card.getRank().equals("学士"));
-//                }
-//                addPersonalCard
-//                return true;
-//
-//            }catch (Exception e){
-//                throw new RuntimeException("抽卡失败");
-//            }
-//        }else{
-//            throw new RuntimeException("影响力不能为0!");
-//        }
-//    }
-
 }

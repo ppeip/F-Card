@@ -1,6 +1,8 @@
 package com.lzj.demo.service.impl;
 
+
 import com.lzj.demo.dao.CardInHandDao;
+
 import com.lzj.demo.entity.CardInHand;
 import com.lzj.demo.service.CardInHandService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * @author xcp
- * @version 1.0
+ * @author lzj
+ * @version 2.0
  */
 @Service
 public class CardInHandServiceImpl implements CardInHandService {
@@ -87,40 +89,8 @@ public class CardInHandServiceImpl implements CardInHandService {
         }
     }
 
-//    @Transactional
-//    @Override
-//    public boolean rollCard(Integer influence) {
-//        if (influence == 0) {
-//            try {
-//                Card card;
-//                List<Card> cardList = cardDao.queryCard();
-//                double x = Math.random() * influence;
-//                if (x < 100) {
-//                    do {
-//                        card = cardList.get((int) (Math.random() * cardList.size()));
-//                    } while (!card.getRank().equals("讲师"));
-//                } else if (x < 1000) {
-//                    do {
-//                        card = cardList.get((int) (Math.random() * cardList.size()));
-//                    } while (!card.getRank().equals("副教授"));
-//                } else if (x < 10000) {
-//                    do {
-//                        card = cardList.get((int) (Math.random() * cardList.size()));
-//                    } while (!card.getRank().equals("教授"));
-//                } else if (x < 100000) {
-//                    do {
-//                        card = cardList.get((int) (Math.random() * cardList.size()));
-//                    } while (!card.getRank().equals("学士"));
-//                }
-//                addPersonalCard
-//                return true;
-//
-//            }catch (Exception e){
-//                throw new RuntimeException("抽卡失败");
-//            }
-//        }else{
-//            throw new RuntimeException("影响力不能为0!");
-//        }
-//    }
+
+
+
 
 }

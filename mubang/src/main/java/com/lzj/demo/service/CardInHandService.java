@@ -15,4 +15,5 @@ public interface CardInHandService {
     boolean insertCardInHand(CardInHand cardInHand);
     boolean updateCardInHand(CardInHand cardInHand);
     boolean deleteCardInHand(CardInHand cardInHand);
+
 }

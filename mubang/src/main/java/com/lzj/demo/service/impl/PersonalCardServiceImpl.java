@@ -1,11 +1,14 @@
 package com.lzj.demo.service.impl;
 
 import com.lzj.demo.dao.PersonalCardDao;
+import com.lzj.demo.entity.Card;
 import com.lzj.demo.entity.PersonalCard;
 import com.lzj.demo.service.PersonalCardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.lzj.demo.entity.User;
+import com.lzj.demo.dao.CardDao;
 
 import java.util.List;
 
@@ -17,7 +20,8 @@ import java.util.List;
 public class PersonalCardServiceImpl implements PersonalCardService {
     @Autowired
     private PersonalCardDao personalCardDao;
-
+    @Autowired
+    private CardDao cardDao;
 
 
     @Override
@@ -87,40 +91,43 @@ public class PersonalCardServiceImpl implements PersonalCardService {
         }
     }
 
-//    @Transactional
-//    @Override
-//    public boolean rollCard(Integer influence) {
-//        if (influence == 0) {
-//            try {
-//                Card card;
-//                List<Card> cardList = cardDao.queryCard();
-//                double x = Math.random() * influence;
-//                if (x < 100) {
-//                    do {
-//                        card = cardList.get((int) (Math.random() * cardList.size()));
-//                    } while (!card.getRank().equals("讲师"));
-//                } else if (x < 1000) {
-//                    do {
-//                        card = cardList.get((int) (Math.random() * cardList.size()));
-//                    } while (!card.getRank().equals("副教授"));
-//                } else if (x < 10000) {
-//                    do {
-//                        card = cardList.get((int) (Math.random() * cardList.size()));
-//                    } while (!card.getRank().equals("教授"));
-//                } else if (x < 100000) {
-//                    do {
-//                        card = cardList.get((int) (Math.random() * cardList.size()));
-//                    } while (!card.getRank().equals("学士"));
-//                }
-//                addPersonalCard
-//                return true;
-//
-//            }catch (Exception e){
-//                throw new RuntimeException("抽卡失败");
-//            }
-//        }else{
-//            throw new RuntimeException("影响力不能为0!");
-//        }
-//    }
-
+    @Transactional
+    @Override
+    public PersonalCard rollCard(User user) {
+        int influence = user.getCollegeInflunce();
+        if (influence == 0) {
+            try {
+                Card card = new Card();
+                List<Card> cardList = cardDao.queryCard();
+                double x = Math.random() * influence;
+                if (x < 100) {
+                    do {
+                        card = cardList.get((int) (Math.random() * cardList.size()));
+                    } while (!card.getRank().equals("讲师"));
+                } else if (x < 1000) {
+                    do {
+                        card = cardList.get((int) (Math.random() * cardList.size()));
+                    } while (!card.getRank().equals("副教授"));
+                } else if (x < 10000) {
+                    do {
+                        card = cardList.get((int) (Math.random() * cardList.size()));
+                    } while (!card.getRank().equals("教授"));
+                } else if (x < 100000) {
+                    do {
+                        card = cardList.get((int) (Math.random() * cardList.size()));
+                    } while (!card.getRank().equals("学士"));
+                }
+                PersonalCard personalCard = new PersonalCard(card.getAbility1(),card.getAbility2(),
+                        card.getAbility3(),card.getAbility4(),card.getAbility5(),card.getCardLevel(),
+                        card.getExperience(),card.getRank(),card.getIntroduction(),card.getPreferance(),user.getUID(),
+                        card.getPreferance(),card.getCardName());
+                personalCardDao.insertPersonalCard(personalCard);
+                return personalCard;
+            }catch (Exception e){
+                throw new RuntimeException("抽卡失败");
+            }
+        }else{
+            throw new RuntimeException("影响力不能为0!");
+        }
+    }
 }
