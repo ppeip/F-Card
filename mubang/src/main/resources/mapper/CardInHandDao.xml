@@ -8,7 +8,7 @@
     </select>
     <select id="queryCardInHandByName" resultType="com.lzj.demo.entity.CardInHand">
         select * from mybatis.cardInHand
-        where UID=#{UID}
+        where UID=#{UID} AND cardName=#{cardName}
     </select>
     <insert id="insertCardInHand" useGeneratedKeys="true" keyProperty="name"
             keyColumn="name" parameterType="com.lzj.demo.entity.CardInHand">
@@ -34,12 +34,12 @@
             <if test="preferance">preferance=#{preferance}</if>
             <if test="cardName">cardName=#{cardName}</if>
         </set>
-        where name=#{name}
+        where name=#{name} AND cardName=#{cardName}
     </update>
     <delete id="deleteCardInHand" parameterType="com.lzj.demo.entity.CardInHand">
         DELETE FROM
         mybatis.cardInHand
         WHERE
-            UID=#{UID}
+            UID=#{UID} AND cardName=#{cardName}
     </delete>
 </mapper>

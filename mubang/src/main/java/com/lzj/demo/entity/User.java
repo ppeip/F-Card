@@ -24,4 +24,5 @@ public class User {
     String UID;
     String dateTime;
     String task;
+    Integer towerNumber;
 }

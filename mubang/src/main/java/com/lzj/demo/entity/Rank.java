@@ -20,4 +20,5 @@ public class Rank {
     String name;
     Integer rank;
     String college;
+    String dateTime;
 }

@@ -30,8 +30,8 @@ public class PersonalCardServiceImpl implements PersonalCardService {
     }
 
     @Override
-    public PersonalCard queryPersonalCardByName(String UID) {
-        return personalCardDao.queryPersonalCardByName(UID);
+    public PersonalCard queryPersonalCardByName(String UID,String cardName) {
+        return personalCardDao.queryPersonalCardByName(UID,cardName);
     }
 
     @Transactional

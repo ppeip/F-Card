@@ -14,7 +14,7 @@ import java.util.List;
 @Repository
 public interface CardInHandDao {
     List<CardInHand> queryCardInHand();
-    CardInHand queryCardInHandByName(String UID);
+    CardInHand queryCardInHandByName(String UID,String cardName);
     int insertCardInHand(CardInHand cardInHand);
     int updateCardInHand(CardInHand cardInHand);
     int deleteCardInHand(CardInHand cardInHand);

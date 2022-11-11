@@ -27,4 +27,6 @@ public class PersonalCard {
     String preferance;
     String situation;
     String UID;
+    String dateTime;
+    Integer duplicateCard;
 }
