@@ -100,6 +100,7 @@ public class PersonalCardServiceImpl implements PersonalCardService {
                 Card card = new Card();
                 List<Card> cardList = cardDao.queryCard();
                 double x = Math.random() * influence;
+                //抽卡逻辑
                 if (x < 100) {
                     do {
                         card = cardList.get((int) (Math.random() * cardList.size()));
@@ -117,12 +118,23 @@ public class PersonalCardServiceImpl implements PersonalCardService {
                         card = cardList.get((int) (Math.random() * cardList.size()));
                     } while (!card.getRank().equals("学士"));
                 }
-                PersonalCard personalCard = new PersonalCard(card.getAbility1(),card.getAbility2(),
-                        card.getAbility3(),card.getAbility4(),card.getAbility5(),card.getCardLevel(),
-                        card.getExperience(),card.getRank(),card.getIntroduction(),card.getPreferance(),user.getUID(),
-                        card.getPreferance(),card.getCardName());
-                personalCardDao.insertPersonalCard(personalCard);
-                return personalCard;
+                //查找数据库中该玩家有无该卡
+                PersonalCard personalCard1 = queryPersonalCardByName(user.getUID(),card.getCardName());
+                //若null，则没有，就插入该卡
+                if(personalCard1 == null){
+                    PersonalCard personalCard2 = new PersonalCard(card.getAbility1(),card.getAbility2(),
+                            card.getAbility3(),card.getAbility4(),card.getAbility5(),card.getCardLevel(),
+                            card.getExperience(),card.getRank(),card.getCardName(),card.getIntroduction(),
+                            card.getPreferance(),"闲置",user.getUID(),"",1);
+                    personalCardDao.insertPersonalCard(personalCard2);
+                    personalCard1 = personalCard2;
+                }else{
+                    //若！null，则将卡牌数量+1并更新
+                    personalCard1.setDuplicateCards(personalCard1.getDuplicateCards()+1);
+                    personalCardDao.updatePersonalCard(personalCard1);
+                }
+                //返回卡牌
+                return personalCard1;
             }catch (Exception e){
                 throw new RuntimeException("抽卡失败");
             }

@@ -28,5 +28,5 @@ public class PersonalCard {
     String situation;
     String UID;
     String dateTime;
-    Integer duplicateCard;
+    Integer duplicateCards;
 }
