@@ -13,7 +13,7 @@
     <insert id="insertCardInHand" useGeneratedKeys="true" keyProperty="name"
             keyColumn="name" parameterType="com.lzj.demo.entity.CardInHand">
         INSERT INTO
-        mybatis.card(ability1,ability2,ability3,ability4,ability5,cardLevel,
+        mybatis.cardInHand(ability1,ability2,ability3,ability4,ability5,cardLevel,
         experience,`rank`,cardName,introduction,preferance,UID)
         VALUE
         (#{ability1},#{ability2},#{ability3},#{ability4},#{ability5},#{cardLevel},
@@ -22,19 +22,19 @@
     <update id="updateCardInHand" parameterType="com.lzj.demo.entity.CardInHand">
         update mybatis.cardInHand
         <set>
-            <if test="ability1!=null">ability1=#{ability1}</if>
-            <if test="ability2!=null">ability2=#{ability2}</if>
-            <if test="ability3!=null">ability3=#{ability3}</if>
-            <if test="ability4!=null">ability4=#{ability4}</if>
-            <if test="ability5!=null">ability5=#{ability5}</if>
-            <if test="cardLevel!=null">cardLevel=#{cardLevel}</if>
-            <if test="experience!=null">experience=#{experience}</if>
-            <if test="rank!=null">rank=#{rank}</if>
-            <if test="introduction">introduction=#{introduction}</if>
-            <if test="preferance">preferance=#{preferance}</if>
-            <if test="cardName">cardName=#{cardName}</if>
+            <if test="ability1!=null">ability1=#{ability1},</if>
+            <if test="ability2!=null">ability2=#{ability2},</if>
+            <if test="ability3!=null">ability3=#{ability3},</if>
+            <if test="ability4!=null">ability4=#{ability4},</if>
+            <if test="ability5!=null">ability5=#{ability5},</if>
+            <if test="cardLevel!=null">cardLevel=#{cardLevel},</if>
+            <if test="experience!=null">experience=#{experience},</if>
+            <if test="rank!=null">`rank`=#{rank},</if>
+            <if test="cardName!=null">cardName=#{cardName},</if>
+            <if test="introduction!=null">introduction=#{introduction},</if>
+            <if test="preferance!=null">preferance=#{preferance}</if>
         </set>
-        where name=#{name}
+        where UID=#{UID}
     </update>
     <delete id="deleteCardInHand" parameterType="com.lzj.demo.entity.CardInHand">
         DELETE FROM

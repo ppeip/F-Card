@@ -25,18 +25,6 @@ class CardDaoTest {
     private CardDao cardDao;
 
     @Test
-    @Ignore
-    void queryCard() {
-        List<Card> cardList = cardDao.queryCard();
-        assertEquals(1,cardList.size());
-    }
-
-    @Test
-    @Ignore
-    void queryCardByName() {
-    }
-
-    @Test
     void insertCard() {
         Card card = new Card();
         card.setAbility1(100);
@@ -55,12 +43,62 @@ class CardDaoTest {
     }
 
     @Test
-    @Ignore
+    void queryCard() {
+        List<Card> cardList = cardDao.queryCard();
+        assertEquals(1,cardList.size());
+    }
+
+
+    @Test
+    void queryCardByName() {
+        Card card = new Card();
+        card.setAbility1(100);
+        card.setAbility2(100);
+        card.setAbility3(100);
+        card.setAbility4(100);
+        card.setAbility5(100);
+        card.setCardLevel(100);
+        card.setCardName("张栋");
+        card.setExperience(100);
+        card.setIntroduction("好好好");
+        card.setPreferance("软件工程");
+        card.setRank("教授");
+        Card effectedNum = cardDao.queryCardByName(card.getCardName());
+        assertEquals(card,effectedNum);
+    }
+    @Test
     void updateCard() {
+        Card card = new Card();
+        card.setAbility1(200);
+        card.setAbility2(100);
+        card.setAbility3(100);
+        card.setAbility4(100);
+        card.setAbility5(100);
+        card.setCardLevel(100);
+        card.setCardName("张栋");
+        card.setExperience(100);
+        card.setIntroduction("好好好");
+        card.setPreferance("软件工程");
+        card.setRank("教授");
+        int effectedNum = cardDao.updateCard(card);
+        assertEquals(1,effectedNum);
     }
 
     @Test
-    @Ignore
     void deleteCard() {
+        Card card = new Card();
+        card.setAbility1(100);
+        card.setAbility2(100);
+        card.setAbility3(100);
+        card.setAbility4(100);
+        card.setAbility5(100);
+        card.setCardLevel(100);
+        card.setCardName("张栋");
+        card.setExperience(100);
+        card.setIntroduction("好好好");
+        card.setPreferance("软件工程");
+        card.setRank("教授");
+        int effectedNum = cardDao.deleteCard(card);
+        assertEquals(1,effectedNum);
     }
 }
