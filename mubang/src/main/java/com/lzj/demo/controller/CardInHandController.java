@@ -29,9 +29,9 @@ public class CardInHandController {
         return modelMap;
     }
     @RequestMapping(value = "/getcardinhandbyname",method = RequestMethod.GET)
-    private Map<String,Object> getCardInHandByName(String UID){
+    private Map<String,Object> getCardInHandByName(String UID,String cardName){
         Map<String,Object> modelMap = new HashMap<>();
-        CardInHand cardInHand =cardInHandService.queryCardInHandByName(UID);
+        CardInHand cardInHand =cardInHandService.queryCardInHandByName(UID,cardName);
         modelMap.put("cardInHand",cardInHand);
         return modelMap;
     }

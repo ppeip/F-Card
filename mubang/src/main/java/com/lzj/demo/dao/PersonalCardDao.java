@@ -14,7 +14,7 @@ import java.util.List;
 @Repository
 public interface PersonalCardDao {
     List<PersonalCard> queryPersonalCard();
-    PersonalCard queryPersonalCardByName(String UID);
+    PersonalCard queryPersonalCardByName(String UID,String cardName);
     int insertPersonalCard(PersonalCard personalcard);
     int updatePersonalCard(PersonalCard personalcard);
     int deletePersonalCard(PersonalCard personalcard);

@@ -30,9 +30,9 @@ public class PersonalCardController {
         return modelMap;
     }
     @RequestMapping(value = "/getpersonalcardbyuid",method = RequestMethod.GET)
-    private Map<String,Object> getPersonalCardByName(String UID){
+    private Map<String,Object> getPersonalCardByName(String UID,String cardName){
         Map<String,Object> modelMap = new HashMap<>();
-        PersonalCard personalCard = personalCardService.queryPersonalCardByName(UID);
+        PersonalCard personalCard = personalCardService.queryPersonalCardByName(UID,cardName);
         modelMap.put("personalCard",personalCard);
         return modelMap;
     }
