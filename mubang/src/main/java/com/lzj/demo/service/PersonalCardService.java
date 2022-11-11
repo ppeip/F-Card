@@ -12,7 +12,7 @@ import java.util.List;
 public interface PersonalCardService {
 
     List<PersonalCard> queryPersonalCard();
-    PersonalCard queryPersonalCardByName(String UID);
+    PersonalCard queryPersonalCardByName(String UID,String cardName);
     boolean insertPersonalCard(PersonalCard personalCard);
     boolean updatePersonalCard(PersonalCard personalCard);
     boolean deletePersonalCard(PersonalCard personalCard);

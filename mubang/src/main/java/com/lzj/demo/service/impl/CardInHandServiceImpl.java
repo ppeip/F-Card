@@ -28,8 +28,8 @@ public class CardInHandServiceImpl implements CardInHandService {
     }
 
     @Override
-    public CardInHand queryCardInHandByName(String UID) {
-        return cardInHandDao.queryCardInHandByName(UID);
+    public CardInHand queryCardInHandByName(String UID,String cardName) {
+        return cardInHandDao.queryCardInHandByName(UID,cardName);
     }
 
     @Transactional

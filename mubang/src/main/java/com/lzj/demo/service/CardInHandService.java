@@ -11,7 +11,7 @@ import java.util.List;
 public interface CardInHandService {
 
     List<CardInHand> queryCardInHand();
-    CardInHand queryCardInHandByName(String UID);
+    CardInHand queryCardInHandByName(String UID,String cardName);
     boolean insertCardInHand(CardInHand cardInHand);
     boolean updateCardInHand(CardInHand cardInHand);
     boolean deleteCardInHand(CardInHand cardInHand);

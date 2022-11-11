@@ -14,9 +14,9 @@
     <insert id="insertUser" useGeneratedKeys="true" keyProperty="UID"
             keyColumn="UID" parameterType="com.lzj.demo.entity.User">
         INSERT INTO
-        mybatis.user(collegeInflunce,coin,name,password,college,phoneNumber,UID,dateTime,task)
+        mybatis.user(collegeInflunce,coin,name,password,college,phoneNumber,UID,dateTime,task,towerNumber)
         VALUE
-        (#{collegeInflunce},#{coin},#{name},#{password},#{college},#{phoneNumber},#{UID},#{dateTime},#{task})
+        (#{collegeInflunce},#{coin},#{name},#{password},#{college},#{phoneNumber},#{UID},#{dateTime},#{task},#{towerNumber})
     </insert>
     <update id="updateUser" parameterType="com.lzj.demo.entity.User">
         update mybatis.user
@@ -29,6 +29,7 @@
             <if test="phoneNumber">phoneNumber=#{phoneNumber}</if>
             <if test="dateTime">dateTime=#{dateTime}</if>
             <if test="task">task=#{task}</if>
+            <if test="towerNumber">towerNumber=#{towerNumber}</if>
         </set>
         where UID=#{UID}
     </update>
