@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: com.lzj.demo.dao.CardDaoTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 11.378 s <<< FAILURE! - in com.lzj.demo.dao.CardDaoTest
+queryCard  Time elapsed: 6.04 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <1> but was: <0>
+	at com.lzj.demo.dao.CardDaoTest.queryCard(CardDaoTest.java:48)
+
+updateCard  Time elapsed: 0.106 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <1> but was: <0>
+	at com.lzj.demo.dao.CardDaoTest.updateCard(CardDaoTest.java:84)
+
