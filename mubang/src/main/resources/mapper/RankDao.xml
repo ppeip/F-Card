@@ -13,18 +13,18 @@
     <insert id="insertRank" useGeneratedKeys="true" keyProperty="name"
             keyColumn="name" parameterType="com.lzj.demo.entity.Rank">
         INSERT INTO
-        mybatis.rank(collegeInfluence,grade,`name`,`rank`,college,`dateTime`)
+        mybatis.`rank`(collegeInfluence,grade,`name`,`rank`,college,`dateTime`)
         VALUE
-        (#{collegeInflunce},#{grade},#{name},#{rank},#{college},#{dateTime});
+        (#{collegeInfluence},#{grade},#{name},#{rank},#{college},#{dateTime});
     </insert>
     <update id="updateRank" parameterType="com.lzj.demo.entity.Rank">
-        update mybatis.rank
+        update mybatis.`rank`
         <set>
-            <if test="grade!=null">grade=#{grade}</if>
-            <if test="collegeInflunce!=null">collegeInflunce=#{collegeInflunce}</if>
-            <if test="rank!=null">`rank`=#{rank}</if>
-            <if test="college!=null">college=#{college}</if>
-            <if test="dateTime!=null">`dateTime`=#{dateTime}</if>
+            <if test="grade!=null">grade=#{grade},</if>
+            <if test="collegeInfluence!=null">collegeInfluence=#{collegeInfluence},</if>
+            <if test="rank!=null">`rank`=#{rank},</if>
+            <if test="college!=null">college=#{college},</if>
+            <if test="dateTime!=null">`dateTime`=#{dateTime},</if>
         </set>
         where name=#{name}
     </update>
