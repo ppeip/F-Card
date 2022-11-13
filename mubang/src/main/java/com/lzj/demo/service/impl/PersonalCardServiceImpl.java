@@ -28,6 +28,10 @@ public class PersonalCardServiceImpl implements PersonalCardService {
     public List<PersonalCard> queryPersonalCard() {
         return personalCardDao.queryPersonalCard();
     }
+    @Override
+    public List<PersonalCard> queryPersonalCardByUID(String UID) {
+        return personalCardDao.queryPersonalCardByUID(UID);
+    }
 
     @Override
     public PersonalCard queryPersonalCardByName(String UID,String cardName) {

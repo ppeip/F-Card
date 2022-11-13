@@ -44,4 +44,8 @@
         WHERE
         UID=#{UID} AND cardName=#{cardName}
     </delete>
+    <select id="queryPersonalCardByUID" resultType="com.lzj.demo.entity.PersonalCard">
+        select * from mybatis.personalCard
+        where 'UID'=#{UID}
+    </select>
 </mapper>

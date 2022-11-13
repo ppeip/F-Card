@@ -18,4 +18,5 @@ public interface CardInHandDao {
     int insertCardInHand(CardInHand cardInHand);
     int updateCardInHand(CardInHand cardInHand);
     int deleteCardInHand(CardInHand cardInHand);
+    List<CardInHand> queryCardInHandByUID(String UID);
 }
