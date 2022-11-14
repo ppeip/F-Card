@@ -14,22 +14,22 @@
     <insert id="insertUser" useGeneratedKeys="true" keyProperty="UID"
             keyColumn="UID" parameterType="com.lzj.demo.entity.User">
         INSERT INTO
-        mybatis.user(collegeInflunce,coin,name,`password`,college,phoneNumber,UID,`dateTime`,task,towerNumber)
+        mybatis.user(collegeInflunce,coin,`name`,`password`,college,phoneNumber,UID,`dateTime`,task,towerNumber)
         VALUE
         (#{collegeInflunce},#{coin},#{name},#{password},#{college},#{phoneNumber},#{UID},#{dateTime},#{task},#{towerNumber})
     </insert>
     <update id="updateUser" parameterType="com.lzj.demo.entity.User">
         update mybatis.user
         <set>
-            <if test="collegeInflunce!=null">collegeInflunce=#{collegeInflunce}</if>
-            <if test="coin!=null">coin=#{coin}</if>
-            <if test="password!=null">`password`=#{password}</if>
-            <if test="college!=null">college=#{college}</if>
-            <if test="introduction!=null">introduction=#{introduction}</if>
-            <if test="phoneNumber!=null">phoneNumber=#{phoneNumber}</if>
-            <if test="dateTime!=null">`dateTime`=#{dateTime}</if>
-            <if test="task!=null">task=#{task}</if>
-            <if test="towerNumber!=null">towerNumber=#{towerNumber}</if>
+            <if test="collegeInflunce!=null">collegeInflunce=#{collegeInflunce},</if>
+            <if test="coin!=null">coin=#{coin},</if>
+            <if test="name!=null">`name`=#{name},</if>
+            <if test="password!=null">`password`=#{password},</if>
+            <if test="college!=null">college=#{college},</if>
+            <if test="phoneNumber!=null">phoneNumber=#{phoneNumber},</if>
+            <if test="dateTime!=null">`dateTime`=#{dateTime},</if>
+            <if test="task!=null">task=#{task},</if>
+            <if test="towerNumber!=null">towerNumber=#{towerNumber},</if>
         </set>
         where UID=#{UID}
     </update>
