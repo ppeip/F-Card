@@ -60,7 +60,8 @@ class CardInHandDaoTest {
         cardInHand.setIntroduction("好好好");
         cardInHand.setPreferance("软件工程");
         cardInHand.setUID("0001");
-        CardInHand effectedNum = cardInHandDao.queryCardInHandByName(cardInHand.getUID(),cardInHand.getCardName());
+        CardInHand effectedNum = cardInHandDao.queryCardInHandByName(cardInHand.getUID(), cardInHand.getCardName());
+        
         assertEquals(cardInHand,effectedNum);
     }
 
