@@ -17,8 +17,6 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
-    @Autowired
-    private User user;
 
     @Override
     public List<User> queryUser() {

@@ -17,7 +17,7 @@ import java.util.Map;
  * @version 1.0
  */
 @RestController
-@RequestMapping("/superadmin")
+@RequestMapping("/question")
 public class QuestionController {
     @Autowired
     private QuestionService questionService;

@@ -17,7 +17,7 @@ import java.util.Map;
  * @version 1.0
  */
 @RestController
-@RequestMapping("/superadmin")
+@RequestMapping("/card")
 public class CardController {
     @Autowired
     private CardService cardService;

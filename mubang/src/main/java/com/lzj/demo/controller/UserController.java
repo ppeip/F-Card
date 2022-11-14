@@ -103,7 +103,6 @@ public class UserController {
             modelMap.put("personalCardList", personalCardList);
         }else{
             modelMap.put("success",false);
-            return modelMap;
         }
         return modelMap;
     }

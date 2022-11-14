@@ -17,7 +17,7 @@ import java.util.Map;
  * @version 1.0
  */
 @RestController
-@RequestMapping("/superadmin")
+@RequestMapping("/rank")
 public class RankController {
     @Autowired
     private RankService rankService;
@@ -53,7 +53,8 @@ public class RankController {
         modelMap.put("success",rankService.deleteRank(rank));
         return modelMap;
     }
-    @RequestMapping(value = "api/getAllRank",method = RequestMethod.POST)
+
+    @RequestMapping(value = "/getAllRank",method = RequestMethod.POST)
     private Map<String,Object> getAllRank(@RequestBody Rank rank){
         Map<String,Object> modelMap = new HashMap<>();
         rankService.updateRank(rank);
@@ -61,6 +62,7 @@ public class RankController {
         modelMap.put("success",rankService.queryRankByName(rank.getName()));
         modelMap.put("CollegeRank",rankService.getCollegeRankTop10());
         modelMap.put("RankTop10",rankService.queryRankTop10ByGrade());
+        modelMap.put("User",rankService.queryRankByName(rank.getName()));
         return modelMap;
     }
 
