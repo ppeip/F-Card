@@ -1,0 +1,23 @@
+{
+  "groups": [
+    {
+      "name": "spring.datasource",
+      "type": "javax.sql.DataSource",
+      "sourceType": "com.lzj.demo.config.dao.DataSourceConfiguration",
+      "sourceMethod": "druidDataSource()"
+    }
+  ],
+  "properties": [
+    {
+      "name": "mybatis_config_file",
+      "type": "java.lang.String",
+      "description": "Description for mybatis_config_file."
+    },
+    {
+      "name": "spring.datasource.initialSize",
+      "type": "java.lang.String",
+      "description": "Description for spring.datasource.initialSize."
+    }
+  ],
+  "hints": []
+}
