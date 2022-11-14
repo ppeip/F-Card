@@ -15,5 +15,4 @@ public interface RankService {
     boolean insertRank(Rank rank);
     boolean updateRank(Rank rank);
     boolean deleteRank(Rank rank);
-
 }

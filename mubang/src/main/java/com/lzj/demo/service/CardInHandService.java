@@ -15,6 +15,6 @@ public interface CardInHandService {
     boolean insertCardInHand(CardInHand cardInHand);
     boolean updateCardInHand(CardInHand cardInHand);
     boolean deleteCardInHand(CardInHand cardInHand);
-    //List<CardInHand> queryCardInHandByUID();
+    List<CardInHand>queryCardInHandByUID(String UID);
 
 }

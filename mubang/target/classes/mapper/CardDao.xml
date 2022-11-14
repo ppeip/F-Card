@@ -22,16 +22,16 @@
     <update id="updateCard" parameterType="com.lzj.demo.entity.Card">
         update mybatis.card
         <set>
-            <if test="ability1!=null">ability1=#{ability1},</if>
-            <if test="ability2!=null">ability2=#{ability2},</if>
-            <if test="ability3!=null">ability3=#{ability3},</if>
-            <if test="ability4!=null">ability4=#{ability4},</if>
-            <if test="ability5!=null">ability5=#{ability5},</if>
-            <if test="cardLevel!=null">cardLevel=#{cardLevel},</if>
-            <if test="experience!=null">experience=#{experience},</if>
-            <if test="rank!=null">`rank`=#{rank},</if>
-            <if test="introduction!=null">introduction=#{introduction},</if>
-            <if test="preferance!=null">preferance=#{preferance}</if>
+            <if test="ability1!=null">ability1=#{ability1}</if>
+            <if test="ability2!=null">ability2=#{ability2}</if>
+            <if test="ability3!=null">ability3=#{ability3}</if>
+            <if test="ability4!=null">ability4=#{ability4}</if>
+            <if test="ability5!=null">ability5#={ability5}</if>
+            <if test="cardLevel!=null">cardLevel=#{cardLevel}</if>
+            <if test="experience!=null">experience=#{experience}</if>
+            <if test="rank!=null">rank=#{rank}</if>
+            <if test="introduction">introduction=#{introduction}</if>
+            <if test="preferance">preferance=#{preferance}</if>
         </set>
         where cardName=#{cardName}
     </update>

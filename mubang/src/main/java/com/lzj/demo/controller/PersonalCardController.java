@@ -23,14 +23,12 @@ public class PersonalCardController {
     @Autowired
     private PersonalCardService personalCardService;
     @RequestMapping(value = "/listpersonalcard", method = RequestMethod.GET)
-
     private Map<String,Object> listPersonalCard(){
         Map<String,Object> modelMap = new HashMap<>();
         List<PersonalCard> list = personalCardService.queryPersonalCard();
         modelMap.put("personalCardList",list);
         return modelMap;
     }
-
     @RequestMapping(value = "/getpersonalcardbyuid",method = RequestMethod.GET)
     private Map<String,Object> getPersonalCardByName(String UID,String cardName){
         Map<String,Object> modelMap = new HashMap<>();
@@ -38,30 +36,24 @@ public class PersonalCardController {
         modelMap.put("personalCard",personalCard);
         return modelMap;
     }
-
     @RequestMapping(value = "/insertpersonalcard",method = RequestMethod.POST)
     private Map<String,Object> insertPersonalCard(@RequestBody PersonalCard personalCard){
         Map<String,Object> modelMap = new HashMap<>();
         modelMap.put("success",personalCardService.insertPersonalCard(personalCard));
         return modelMap;
     }
-
     @RequestMapping(value = "/updatepersonalcard",method = RequestMethod.POST)
     private Map<String,Object> updatePersonalCard(@RequestBody PersonalCard personalCard){
         Map<String,Object> modelMap = new HashMap<>();
         modelMap.put("success",personalCardService.updatePersonalCard(personalCard));
         return modelMap;
     }
-
     @RequestMapping(value = "/deletepersonalcard",method = RequestMethod.POST)
     private Map<String,Object> deletePersonalCard(@RequestBody PersonalCard personalCard){
         Map<String,Object> modelMap = new HashMap<>();
         modelMap.put("success",personalCardService.deletePersonalCard(personalCard));
         return modelMap;
     }
-
-
-
     @RequestMapping(value = "/rollpersonalcard",method = RequestMethod.POST)
     private Map<String,Object> rollPersonalCard(@RequestBody User user){
         Map<String,Object> modelMap = new HashMap<>();

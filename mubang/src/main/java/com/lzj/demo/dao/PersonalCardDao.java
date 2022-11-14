@@ -18,4 +18,5 @@ public interface PersonalCardDao {
     int insertPersonalCard(PersonalCard personalcard);
     int updatePersonalCard(PersonalCard personalcard);
     int deletePersonalCard(PersonalCard personalcard);
+    List<PersonalCard> queryPersonalCardByUID(String UID);
 }

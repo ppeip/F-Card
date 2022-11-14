@@ -2,9 +2,7 @@ package com.lzj.demo.controller;
 
 
 
-import com.lzj.demo.entity.Card;
-import com.lzj.demo.entity.CardInHand;
-import com.lzj.demo.entity.User;
+import com.lzj.demo.entity.*;
 import com.lzj.demo.service.*;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +27,10 @@ public class UserController {
     private UserService userService;
     @Autowired
     private CardService cardService;
+    @Autowired
+    private PersonalCardService personalCardService;
+    @Autowired
+    private QuestionService questionService;
     @Autowired
     private CardInHandService cardInHandService;
 
@@ -88,13 +90,17 @@ public class UserController {
     private Map<String,Object> loginUser(String UID){
         Map<String,Object> modelMap = new HashMap<>();
         User user = userService.queryUserByUid(UID);
-        List<Card> cards = cardService.queryCard();
-        //cardInHandService.queryCardInHandByName();
-        //用户信息，总牌库，该用户的手牌，该用户的卡组
+        List<Card> cardList=cardService.queryCard();
+        List<PersonalCard> personalCardList=personalCardService.queryPersonalCardByUID(UID);
+        List<CardInHand> cardInHandList=cardInHandService.queryCardInHandByUID(UID);
+        List<Question> questionList=questionService.queryQuestion();
         if(user != null) {
             modelMap.put("success", true);
-            modelMap.put("User", user);
-            modelMap.put("Cards", cards);
+            modelMap.put("cardList", cardList);
+            modelMap.put("cardInHandList", cardInHandList);
+            modelMap.put("user", user);
+            modelMap.put("questionList", questionList);
+            modelMap.put("personalCardList", personalCardList);
         }else{
             modelMap.put("success",false);
             return modelMap;
@@ -102,7 +108,7 @@ public class UserController {
         return modelMap;
     }
     @RequestMapping(value = "/updateuser",method = RequestMethod.POST)
-    private Map<String,Object> undateUser(@RequestBody User user){
+    private Map<String,Object> updateUser(@RequestBody User user){
         Map<String,Object> modelMap = new HashMap<>();
         modelMap.put("success",userService.updateUser(user));
         return modelMap;

@@ -20,12 +20,12 @@
     <update id="updateQuestion" parameterType="com.lzj.demo.entity.Question">
         update mybatis.question
         <set>
-            <if test="questionAbility1!=null">questionAbility1=#{questionAbility1},</if>
-            <if test="questionAbility2!=null">questionAbility2=#{questionAbility2},</if>
-            <if test="questionAbility3!=null">questionAbility3=#{questionAbility3},</if>
-            <if test="questionAbility4!=null">questionAbility4=#{questionAbility4},</if>
-            <if test="questionAbility5!=null">questionAbility5=#{questionAbility5},</if>
-            <if test="preferance!=null">preferance=#{preferance},</if>
+            <if test="questionAbility1!=null">questionAbility1=#{questionAbility1}</if>
+            <if test="questionAbility2!=null">questionAbility2=#{questionAbility2}</if>
+            <if test="questionAbility3!=null">questionAbility3=#{questionAbility3}</if>
+            <if test="questionAbility4!=null">questionAbility4=#{questionAbility4}</if>
+            <if test="questionAbility5!=null">questionAbility5=#{questionAbility5}</if>
+            <if test="preferance!=null">preferance=#{preferance}</if>
         </set>
         where questionName=#{questionName}
     </update>

@@ -8,7 +8,7 @@
     </select>
     <select id="queryPersonalCardByName" resultType="com.lzj.demo.entity.PersonalCard">
         select * from mybatis.personalCard
-        where UID=#{UID} AND cardName=#{cardName}
+        where 'UID'=#{UID} AND cardName=#{cardName}
     </select>
     <insert id="insertPersonalCard" useGeneratedKeys="true" keyProperty="UID"
             keyColumn="UID" parameterType="com.lzj.demo.entity.PersonalCard">
@@ -22,18 +22,18 @@
     <update id="updatePersonalCard" parameterType="com.lzj.demo.entity.PersonalCard">
         update mybatis.personalCard
         <set>
-            <if test="ability1!=null">ability1=#{ability1},</if>
-            <if test="ability2!=null">ability2=#{ability2},</if>
-            <if test="ability3!=null">ability3=#{ability3},</if>
-            <if test="ability4!=null">ability4=#{ability4},</if>
-            <if test="ability5!=null">ability5=#{ability5},</if>
-            <if test="cardLevel!=null">cardLevel=#{cardLevel},</if>
-            <if test="experience!=null">experience=#{experience},</if>
-            <if test="rank!=null">`rank`=#{rank},</if>
-            <if test="introduction!=null">introduction=#{introduction},</if>
-            <if test="preferance!=null">preferance=#{preferance},</if>
-            <if test="situation!=null">situation=#{situation},</if>
-            <if test="dateTime!=null">`dateTime`=#{dateTime},</if>
+            <if test="ability1!=null">ability1=#{ability1}</if>
+            <if test="ability2!=null">ability2=#{ability2}</if>
+            <if test="ability3!=null">ability3=#{ability3}</if>
+            <if test="ability4!=null">ability4=#{ability4}</if>
+            <if test="ability5!=null">ability5=#{ability5}</if>
+            <if test="cardLevel!=null">cardLevel=#{cardLevel}</if>
+            <if test="experience!=null">experience=#{experience}</if>
+            <if test="rank!=null">`rank`=#{rank}</if>
+            <if test="introduction!=null">introduction=#{introduction}</if>
+            <if test="preferance!=null">preferance=#{preferance}</if>
+            <if test="situation!=null">situation=#{situation}</if>
+            <if test="dateTime!=null">`dateTime`=#{dateTime}</if>
             <if test="duplicateCards!=null">duplicateCards=#{duplicateCards}</if>
         </set>
         where UID=#{UID} AND cardName=#{cardName}
@@ -44,4 +44,8 @@
         WHERE
         UID=#{UID} AND cardName=#{cardName}
     </delete>
+    <select id="queryPersonalCardByUID" resultType="com.lzj.demo.entity.PersonalCard">
+        select * from mybatis.personalCard
+        where 'UID'=#{UID}
+    </select>
 </mapper>

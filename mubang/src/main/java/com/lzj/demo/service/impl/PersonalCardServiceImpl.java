@@ -10,9 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.lzj.demo.entity.User;
 import com.lzj.demo.dao.CardDao;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -30,6 +27,10 @@ public class PersonalCardServiceImpl implements PersonalCardService {
     @Override
     public List<PersonalCard> queryPersonalCard() {
         return personalCardDao.queryPersonalCard();
+    }
+    @Override
+    public List<PersonalCard> queryPersonalCardByUID(String UID) {
+        return personalCardDao.queryPersonalCardByUID(UID);
     }
 
     @Override
@@ -93,7 +94,6 @@ public class PersonalCardServiceImpl implements PersonalCardService {
             throw new RuntimeException("卡牌名称不能为空!");
         }
     }
-
 
     @Transactional
     @Override

@@ -2,13 +2,13 @@ package com.lzj.demo.service.impl;
 
 
 import com.lzj.demo.dao.CardInHandDao;
-
 import com.lzj.demo.entity.CardInHand;
 import com.lzj.demo.service.CardInHandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.rmi.server.UID;
 import java.util.List;
 
 /**
@@ -25,6 +25,10 @@ public class CardInHandServiceImpl implements CardInHandService {
     @Override
     public List<CardInHand> queryCardInHand() {
         return cardInHandDao.queryCardInHand();
+    }
+    @Override
+    public List<CardInHand> queryCardInHandByUID(String UID) {
+        return cardInHandDao.queryCardInHandByUID(UID);
     }
 
     @Override
