@@ -10,6 +10,15 @@
         select * from mybatis.rank
         where name=#{name}
     </select>
+    <select id="queryRankTop10ByGrade" resultType="com.lzj.demo.entity.Rank">
+        select * from mybatis.rank ORDER BY grade DESC
+    </select>
+    <select id="getCollegeRankTop10" resultType="HashMap">
+        SELECT sum(collegeInfluence),college
+        FROM mybatis.`rank`
+        GROUP BY college
+        ORDER BY sum(collegeInfluence) DESC LIMIT 10
+    </select>
     <insert id="insertRank" useGeneratedKeys="true" keyProperty="name"
             keyColumn="name" parameterType="com.lzj.demo.entity.Rank">
         INSERT INTO
@@ -27,6 +36,13 @@
             <if test="dateTime!=null">`dateTime`=#{dateTime}</if>
         </set>
         where name=#{name}
+    </update>
+    <update id="updateAllUserRank" parameterType="com.lzj.demo.entity.Rank">
+        update mybatis.`rank`,(SELECT @curRank:=0) AS temp
+        <set>
+            `rank`.`rank` =(@curRank := @curRank +1)
+        </set>
+        ORDER BY grade DESC
     </update>
     <delete id="deleteRank" parameterType="com.lzj.demo.entity.Rank">
         DELETE FROM

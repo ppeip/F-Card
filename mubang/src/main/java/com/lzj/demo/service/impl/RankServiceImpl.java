@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author xcp
@@ -24,6 +25,13 @@ public class RankServiceImpl implements RankService {
     public List<Rank> queryRank() {
         return rankDao.queryRank();
     }
+
+    @Transactional
+    @Override
+    public List<Rank> queryRankTop10ByGrade(){return rankDao.queryRankTop10ByGrade();}
+    @Transactional
+    @Override
+    public List<Map<String,Integer>> getCollegeRankTop10(){return rankDao.getCollegeRankTop10();}
 
     @Override
     public Rank queryRankByName(String name) {
@@ -86,6 +94,23 @@ public class RankServiceImpl implements RankService {
             throw new RuntimeException("排名名称不能为空!");
         }
     }
+
+    @Transactional
+    @Override
+    public Boolean updateAllUserRank(){
+        try {
+            int effectedNum = rankDao.updateAllUserRank();
+            if (effectedNum > 0) {
+                return true;
+            } else {
+                throw new RuntimeException("更新所有人rank成功");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("更新所有人rank失败" + e.getMessage());
+        }
+
+    }
+
 
 
 
