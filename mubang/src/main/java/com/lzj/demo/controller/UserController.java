@@ -2,6 +2,8 @@ package com.lzj.demo.controller;
 
 
 
+import com.lzj.demo.entity.Card;
+import com.lzj.demo.entity.CardInHand;
 import com.lzj.demo.entity.User;
 import com.lzj.demo.service.*;
 import net.sf.json.JSONObject;
@@ -25,6 +27,10 @@ import static com.lzj.demo.utils.HttpRequest.sendGet;
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private CardService cardService;
+    @Autowired
+    private CardInHandService cardInHandService;
 
     @RequestMapping(value = "/listuser", method = RequestMethod.GET)
     private Map<String,Object> listUser(){
@@ -82,8 +88,13 @@ public class UserController {
     private Map<String,Object> loginUser(String UID){
         Map<String,Object> modelMap = new HashMap<>();
         User user = userService.queryUserByUid(UID);
+        List<Card> cards = cardService.queryCard();
+        //cardInHandService.queryCardInHandByName();
+        //用户信息，总牌库，该用户的手牌，该用户的卡组
         if(user != null) {
             modelMap.put("success", true);
+            modelMap.put("User", user);
+            modelMap.put("Cards", cards);
         }else{
             modelMap.put("success",false);
             return modelMap;

@@ -53,4 +53,6 @@ public class RankController {
         modelMap.put("success",rankService.deleteRank(rank));
         return modelMap;
     }
+
+
 }

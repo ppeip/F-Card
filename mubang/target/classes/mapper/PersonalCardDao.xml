@@ -8,16 +8,16 @@
     </select>
     <select id="queryPersonalCardByName" resultType="com.lzj.demo.entity.PersonalCard">
         select * from mybatis.personalCard
-        where 'UID'=#{UID}
+        where 'UID'=#{UID} AND cardName=#{cardName}
     </select>
     <insert id="insertPersonalCard" useGeneratedKeys="true" keyProperty="UID"
             keyColumn="UID" parameterType="com.lzj.demo.entity.PersonalCard">
         INSERT INTO
-        mybatis.card(ability1,ability2,ability3,ability4,ability5,cardLevel,experience,rank,cardName,
-        introduction,preferance,situation,UID)
+        mybatis.personalcard(ability1,ability2,ability3,ability4,ability5,cardLevel,experience,`rank`,cardName,
+        introduction,preferance,situation,UID,`dateTime`,duplicateCards)
         VALUE
         (#{ability1},#{ability2},#{ability3},#{ability4},#{ability5},#{cardLevel},
-        #{experience},#{rank},#{cardName},#{introduction},#{preferance},#{situation},#{UID})
+        #{experience},#{rank},#{cardName},#{introduction},#{preferance},#{situation},#{UID},#{dateTime},#{duplicateCards})
     </insert>
     <update id="updatePersonalCard" parameterType="com.lzj.demo.entity.PersonalCard">
         update mybatis.personalCard
@@ -29,18 +29,19 @@
             <if test="ability5!=null">ability5=#{ability5}</if>
             <if test="cardLevel!=null">cardLevel=#{cardLevel}</if>
             <if test="experience!=null">experience=#{experience}</if>
-            <if test="rank!=null">rank=#{rank}</if>
-            <if test="introduction">introduction=#{introduction}</if>
-            <if test="preferance">preferance=#{preferance}</if>
-            <if test="cardName">cardName=#{cardName}</if>
-            <if test="situation">situation=#{situation}</if>
+            <if test="rank!=null">`rank`=#{rank}</if>
+            <if test="introduction!=null">introduction=#{introduction}</if>
+            <if test="preferance!=null">preferance=#{preferance}</if>
+            <if test="situation!=null">situation=#{situation}</if>
+            <if test="dateTime!=null">`dateTime`=#{dateTime}</if>
+            <if test="duplicateCards!=null">duplicateCards=#{duplicateCards}</if>
         </set>
-        where UID=#{UID}
+        where UID=#{UID} AND cardName=#{cardName}
     </update>
     <delete id="deletePersonalCard" parameterType="com.lzj.demo.entity.PersonalCard">
         DELETE FROM
         mybatis.personalCard
         WHERE
-        UID=#{UID}
+        UID=#{UID} AND cardName=#{cardName}
     </delete>
 </mapper>
