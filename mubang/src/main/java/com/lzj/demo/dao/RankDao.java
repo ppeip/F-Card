@@ -1,7 +1,6 @@
 package com.lzj.demo.dao;
 
 import com.lzj.demo.entity.Rank;
-import net.sf.json.JSONObject;
 import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
