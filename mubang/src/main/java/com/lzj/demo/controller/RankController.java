@@ -53,6 +53,7 @@ public class RankController {
         modelMap.put("success",rankService.deleteRank(rank));
         return modelMap;
     }
+
     @RequestMapping(value = "/getAllRank",method = RequestMethod.POST)
     private Map<String,Object> getAllRank(@RequestBody Rank rank){
         Map<String,Object> modelMap = new HashMap<>();
