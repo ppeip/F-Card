@@ -3,6 +3,7 @@ package com.lzj.demo.dao;
 import com.lzj.demo.entity.PersonalCard;
 import com.lzj.demo.entity.Question;
 import com.lzj.demo.entity.Rank;
+import net.sf.json.JSONObject;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @RunWith(SpringRunner.class)
@@ -81,5 +84,25 @@ class RankDaoTest {
         rank.setDateTime("2022-11-12");
         int  effectedNum = rankDao.deleteRank(rank);
         assertEquals(1,effectedNum);
+    }
+
+    @Test
+    void queryRankTop10ByGrade() {
+        List<Rank> Top10ranklist = rankDao.queryRankTop10ByGrade();
+        assertEquals(10,Top10ranklist);
+    }
+
+    @Test
+    void updateAllUserRank() {
+        int effectedNum = rankDao.updateAllUserRank();
+        assertEquals(1,effectedNum);
+    }
+
+    @Test
+    void getCollegeRankTop10() {
+        List<Map<String,Integer>> collegeRank = rankDao.getCollegeRankTop10();
+        System.out.println(collegeRank);
+        assertEquals(10,collegeRank.size());
+
     }
 }
