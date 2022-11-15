@@ -8,8 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.lzj.demo.entity.User;
-import com.lzj.demo.dao.CardDao;
+import com.lzj.demo.dao.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -22,6 +25,8 @@ public class PersonalCardServiceImpl implements PersonalCardService {
     private PersonalCardDao personalCardDao;
     @Autowired
     private CardDao cardDao;
+    @Autowired
+    private UserDao userDao;
 
 
     @Override
@@ -145,5 +150,67 @@ public class PersonalCardServiceImpl implements PersonalCardService {
         }else{
             throw new RuntimeException("影响力不能为0!");
         }
+    }
+    @Transactional
+    @Override
+    public PersonalCard dispatchCard(PersonalCard personalCard,String dismethod) {
+        Date newTime = new Date();
+        if (personalCard.getSituation().equals("闲置")) {
+            try {
+                personalCard.setSituation(dismethod);
+                personalCard.setDateTime(String.format("%tF %tT", newTime, newTime));
+                personalCardDao.updatePersonalCard(personalCard);
+            } catch (Exception e) {
+                throw new RuntimeException("选择失败");
+            }
+        }
+        return personalCard;
+    }
+    @Transactional
+    @Override
+    public String finishResult(PersonalCard personalCard,User user) {
+        Date newTime = new Date();
+        Date oldTime;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            oldTime = simpleDateFormat.parse(personalCard.getDateTime());
+        } catch (ParseException e) {
+            throw new RuntimeException("赋值错误");
+        }
+        Date newTime1 = new Date(newTime.getTime() - 24 * 60 * 60 * 1000);
+        if (personalCard.getSituation().equals("科研")) {
+            if (newTime1.compareTo(oldTime) < 0) {
+                return String.format("%tF %tT",newTime.getTime() - oldTime.getTime(),newTime.getTime() - oldTime.getTime());
+            } else {
+                personalCard.setSituation("闲置");
+                personalCard.setDateTime(String.format("%tF %tT", newTime, newTime));
+                personalCard.setExperience(personalCard.getExperience() + 100);
+                if (personalCard.getExperience() >= 1000) {
+                    personalCard.setCardLevel(personalCard.getCardLevel() + 1);
+                    personalCard.setExperience(personalCard.getExperience() - 1000);
+                }
+                user.setCoin(user.getCoin() + 10);
+                user.setCollegeInflunce(user.getCollegeInflunce() + 100);
+                personalCardDao.updatePersonalCard(personalCard);
+                userDao.updateUser(user);
+            }
+        } else if (personalCard.getSituation().equals("教学")) {
+            if (newTime1.compareTo(oldTime) < 0) {
+                return String.format("%tF %tT",newTime.getTime() - oldTime.getTime(),newTime.getTime() - oldTime.getTime());
+            } else {
+                personalCard.setSituation("闲置");
+                personalCard.setDateTime(String.format("%tF %tT", newTime, newTime));
+                personalCard.setExperience(personalCard.getExperience() + 100);
+                if (personalCard.getExperience() >= 1000) {
+                    personalCard.setCardLevel(personalCard.getCardLevel() + 1);
+                    personalCard.setExperience(personalCard.getExperience() - 1000);
+                }
+                user.setCoin(user.getCoin() + 5);
+                user.setCollegeInflunce(user.getCollegeInflunce() + 50);
+                personalCardDao.updatePersonalCard(personalCard);
+                userDao.updateUser(user);
+            }
+        }
+        return "派遣完成";
     }
 }
