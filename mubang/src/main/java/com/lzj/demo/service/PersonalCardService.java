@@ -17,5 +17,7 @@ public interface PersonalCardService {
     boolean updatePersonalCard(PersonalCard personalCard);
     boolean deletePersonalCard(PersonalCard personalCard);
     PersonalCard rollCard(User user);
+    PersonalCard dispatchCard(PersonalCard personalCard,String dismethod);
+    String finishResult(PersonalCard personalCard,User user);
     List<PersonalCard> queryPersonalCardByUID(String UID);
 }
