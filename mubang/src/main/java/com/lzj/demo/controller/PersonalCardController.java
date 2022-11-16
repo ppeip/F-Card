@@ -64,5 +64,11 @@ public class PersonalCardController {
         modelMap.put("personalCard",personalCardService.rollCard(user));
         return modelMap;
     }
-
+    @RequestMapping(value = "/dispatchpersonalcard",method = RequestMethod.POST)
+    private Map<String,Object> dispatchPersonalCard(@RequestBody PersonalCard personalCard,String dismethod,User user){
+        Map<String,Object> modelMap = new HashMap<>();
+        modelMap.put("dispatchCard",personalCardService.dispatchCard(personalCard,dismethod));
+        modelMap.put("finishResult",personalCardService.finishResult(personalCard,user));
+        return modelMap;
+    }
 }
