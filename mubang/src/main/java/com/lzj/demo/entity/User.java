@@ -23,6 +23,8 @@ public class User {
     String phoneNumber;
     String UID;
     String dateTime;
-    String task;
+    String sex;
+    Integer battle;
+    Integer win;
     Integer towerNumber;
 }

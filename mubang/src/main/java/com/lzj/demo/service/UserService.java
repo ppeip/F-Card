@@ -12,6 +12,7 @@ public interface UserService {
 
     List<User> queryUser();
     User queryUserByUid(String UID);
+    String currentTime();
     boolean insertUser(User user);
     boolean updateUser(User user);
     boolean deleteUser(User user);

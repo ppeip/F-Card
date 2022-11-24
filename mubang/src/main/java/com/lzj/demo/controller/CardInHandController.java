@@ -19,6 +19,8 @@ import java.util.Map;
 public class CardInHandController {
     @Autowired
     private CardInHandService cardInHandService;
+
+    @CrossOrigin
     @RequestMapping(value = "/listcardinhand", method = RequestMethod.GET)
     private Map<String,Object> listCardInHand(){
         Map<String,Object> modelMap = new HashMap<>();
@@ -26,6 +28,8 @@ public class CardInHandController {
         modelMap.put("cardInHandList",list);
         return modelMap;
     }
+
+    @CrossOrigin
     @RequestMapping(value = "/getcardinhandbyname",method = RequestMethod.GET)
     private Map<String,Object> getCardInHandByName(@RequestParam(value = "UID") String UID, @RequestParam(value = "cardName") String cardName){
         Map<String,Object> modelMap = new HashMap<>();
@@ -33,6 +37,8 @@ public class CardInHandController {
         modelMap.put("cardInHand",cardInHand);
         return modelMap;
     }
+
+    @CrossOrigin
     @RequestMapping(value = "/getcardinhandbyuid",method = RequestMethod.GET)
     private Map<String,Object> getCardInHandByUID(String UID){
         Map<String,Object> modelMap = new HashMap<>();
@@ -40,18 +46,24 @@ public class CardInHandController {
         modelMap.put("cardInHandList",cardInHand);
         return modelMap;
     }
+
+    @CrossOrigin
     @RequestMapping(value = "/insertcardinhand",method = RequestMethod.POST)
     private Map<String,Object> insertCardInHand(@RequestBody CardInHand cardInHand){
         Map<String,Object> modelMap = new HashMap<>();
         modelMap.put("success",cardInHandService.insertCardInHand(cardInHand));
         return modelMap;
     }
+
+    @CrossOrigin
     @RequestMapping(value = "/updatecardinhand",method = RequestMethod.POST)
     private Map<String,Object> updateCardInHand(@RequestBody CardInHand cardInHand){
         Map<String,Object> modelMap = new HashMap<>();
         modelMap.put("success",cardInHandService.updateCardInHand(cardInHand));
         return modelMap;
     }
+
+    @CrossOrigin
     @RequestMapping(value = "/deletecardinhand",method = RequestMethod.POST)
     private Map<String,Object> deleteCardInHand(@RequestBody CardInHand cardInHand){
         Map<String,Object> modelMap = new HashMap<>();

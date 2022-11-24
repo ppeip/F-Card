@@ -1,8 +1,10 @@
 package com.lzj.demo.service.impl;
 
+import com.lzj.demo.dao.CardInHandDao;
 import com.lzj.demo.dao.PersonalCardDao;
 import com.lzj.demo.dao.UserDao;
 import com.lzj.demo.entity.Card;
+import com.lzj.demo.entity.CardInHand;
 import com.lzj.demo.entity.PersonalCard;
 import com.lzj.demo.service.PersonalCardService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,8 @@ public class PersonalCardServiceImpl implements PersonalCardService {
     private CardDao cardDao;
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private CardInHandDao cardInHandDao;
 
     @Override
     public List<PersonalCard> queryPersonalCard() {
@@ -67,8 +71,18 @@ public class PersonalCardServiceImpl implements PersonalCardService {
     public boolean updatePersonalCard(PersonalCard personalCard) {
         if (personalCard.getUID() != null && !"".equals(personalCard.getUID())) {
             try {
-                int effectedNum = personalCardDao.updatePersonalCard(personalCard);
-                if (effectedNum > 0) {
+                int effectedNum1 = personalCardDao.updatePersonalCard(personalCard);
+                List<CardInHand> cardInHandList = cardInHandDao.queryCardInHandByUID(personalCard.getUID());
+                for(CardInHand cardInHand : cardInHandList){
+                    if(cardInHand.getCardName().equals(personalCard.getCardName())){
+                        cardInHandDao.updateCardInHand(new CardInHand(personalCard.getAbility1(),
+                                personalCard.getAbility2(),personalCard.getAbility3(),personalCard.getAbility4(),
+                                personalCard.getAbility5(),personalCard.getCardLevel(),personalCard.getExperience(),
+                                personalCard.getRank(),personalCard.getCardName(),personalCard.getIntroduction(),
+                                personalCard.getPreferance(),personalCard.getUID()));
+                    }
+                }
+                if (effectedNum1 > 0) {
                     return true;
                 } else {
                     throw new RuntimeException("更新卡牌失败");

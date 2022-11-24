@@ -29,7 +29,7 @@ class PersonalTaskDaoTest {
     void insertPersonalTask() {
         PersonalTask personalTask = new PersonalTask();
         personalTask.setUID("0001");
-        personalTask.setTaskname("打一把牌局");
+        personalTask.setTaskName("打一把牌局");
         personalTask.setCurrent(0);
         personalTask.setEnd(1);
         personalTask.setType("每日");
@@ -52,7 +52,7 @@ class PersonalTaskDaoTest {
     void queryPersonalTaskByUID() {
         PersonalTask personalTask = new PersonalTask();
         personalTask.setUID("0001");
-        personalTask.setTaskname("打一把牌局");
+        personalTask.setTaskName("打一把牌局");
         personalTask.setCurrent(0);
         personalTask.setEnd(1);
         personalTask.setType("每日");
@@ -65,7 +65,7 @@ class PersonalTaskDaoTest {
     void updatePersonalTask() {
         PersonalTask personalTask = new PersonalTask();
         personalTask.setUID("0001");
-        personalTask.setTaskname("打一把牌局");
+        personalTask.setTaskName("打一把牌局");
         personalTask.setCurrent(0);
         personalTask.setEnd(2);
         personalTask.setType("每日");
@@ -79,13 +79,13 @@ class PersonalTaskDaoTest {
     void deletePersonalTask() {
         PersonalTask personalTask = new PersonalTask();
         personalTask.setUID("0001");
-        personalTask.setTaskname("打一把牌局");
+        personalTask.setTaskName("打一把牌局");
         personalTask.setCurrent(0);
         personalTask.setEnd(1);
         personalTask.setType("每日");
         personalTask.setReward("给100金币");
         personalTask.setDate("2022-11-18");
-        int  effectedNum = personalTaskDao.deletePersonalTask(personalTask.getUID(), personalTask.getTaskname());
+        int  effectedNum = personalTaskDao.deletePersonalTask(personalTask.getUID(), personalTask.getTaskName());
         assertEquals(1,effectedNum);
     }
 }

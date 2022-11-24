@@ -3,10 +3,7 @@ package com.lzj.demo.controller;
 import com.lzj.demo.entity.Rank;
 import com.lzj.demo.service.RankService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -21,6 +18,8 @@ import java.util.Map;
 public class RankController {
     @Autowired
     private RankService rankService;
+
+    @CrossOrigin
     @RequestMapping(value = "/listrank", method = RequestMethod.GET)
     private Map<String,Object> listRank(){
         Map<String,Object> modelMap = new HashMap<>();
@@ -28,6 +27,7 @@ public class RankController {
         modelMap.put("rankList",list);
         return modelMap;
     }
+    @CrossOrigin
     @RequestMapping(value = "/getrankbyname",method = RequestMethod.GET)
     private Map<String,Object> getRankByName(String name){
         Map<String,Object> modelMap = new HashMap<>();
@@ -35,24 +35,32 @@ public class RankController {
         modelMap.put("rank",rank);
         return modelMap;
     }
+
+    @CrossOrigin
     @RequestMapping(value = "/insertrank",method = RequestMethod.POST)
     private Map<String,Object> insertRank(@RequestBody Rank rank){
         Map<String,Object> modelMap = new HashMap<>();
         modelMap.put("success",rankService.insertRank(rank));
         return modelMap;
     }
+
+    @CrossOrigin
     @RequestMapping(value = "/updaterank",method = RequestMethod.POST)
     private Map<String,Object> undateRank(@RequestBody Rank rank){
         Map<String,Object> modelMap = new HashMap<>();
         modelMap.put("success",rankService.updateRank(rank));
         return modelMap;
     }
+
+    @CrossOrigin
     @RequestMapping(value = "/deleterank",method = RequestMethod.POST)
     private Map<String,Object> deleteRank(@RequestBody Rank rank){
         Map<String,Object> modelMap = new HashMap<>();
         modelMap.put("success",rankService.deleteRank(rank));
         return modelMap;
     }
+
+    @CrossOrigin
     @RequestMapping(value = "/getAllRank",method = RequestMethod.POST)
     private Map<String,Object> getAllRank(@RequestBody Rank rank){
         Map<String,Object> modelMap = new HashMap<>();

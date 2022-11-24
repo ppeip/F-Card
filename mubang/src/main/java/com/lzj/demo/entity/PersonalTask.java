@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class PersonalTask {
     String UID;
-    String taskname;
+    String taskName;
     Integer current;
     Integer end;
     String type;

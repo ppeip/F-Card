@@ -14,9 +14,9 @@
     <insert id="insertUser" useGeneratedKeys="true" keyProperty="UID"
             keyColumn="UID" parameterType="com.lzj.demo.entity.User">
         INSERT INTO
-        mybatis.user(collegeInfluence,coin,`name`,`password`,college,phoneNumber,UID,`dateTime`,task,towerNumber)
+        mybatis.user(collegeInfluence,coin,`name`,`password`,college,phoneNumber,UID,`dateTime`,towerNumber,`sex`,win,battle)
         VALUE
-        (#{collegeInfluence},#{coin},#{name},#{password},#{college},#{phoneNumber},#{UID},#{dateTime},#{task},#{towerNumber})
+        (#{collegeInfluence},#{coin},#{name},#{password},#{college},#{phoneNumber},#{UID},#{dateTime},#{towerNumber},#{sex},#{win},#{battle})
     </insert>
     <update id="updateUser" parameterType="com.lzj.demo.entity.User">
         update mybatis.user
@@ -28,8 +28,10 @@
             <if test="college!=null">college=#{college},</if>
             <if test="phoneNumber!=null">phoneNumber=#{phoneNumber},</if>
             <if test="dateTime!=null">`dateTime`=#{dateTime},</if>
-            <if test="task!=null">task=#{task},</if>
             <if test="towerNumber!=null">towerNumber=#{towerNumber},</if>
+            <if test="win!=null">win=#{win},</if>
+            <if test="sex!=null">`sex`=#{sex},</if>
+            <if test="battle!=battle">battle=#{battle},</if>
         </set>
         where UID=#{UID}
     </update>

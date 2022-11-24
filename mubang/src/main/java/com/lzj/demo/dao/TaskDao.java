@@ -15,6 +15,7 @@ import java.util.List;
 public interface TaskDao {
     List<Task> queryTask();
     Task queryTaskByTaskName(String taskName);
+    List<Task> queryTaskByType(String type);
     int insertTask(Task task);
     int updateTask(Task task);
     int deleteTask(Task task);

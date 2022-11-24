@@ -35,7 +35,6 @@ class UserDaoTest {
         user.setPhoneNumber("1112222333");
         user.setUID("0001");
         user.setDateTime("2022-11-12 00:00:00");
-        user.setTask("完成");
         user.setTowerNumber(5);
         int effectedNum = userDao.insertUser(user);
         assertEquals(1,effectedNum);
@@ -59,7 +58,6 @@ class UserDaoTest {
         user.setPhoneNumber("1112222333");
         user.setUID("0001");
         user.setDateTime("2022-11-12 00:00:00");
-        user.setTask("完成");
         user.setTowerNumber(5);
         User effectedNum = userDao.queryUserByUid(user.getUID());
         assertEquals(user,effectedNum);
@@ -78,7 +76,6 @@ class UserDaoTest {
         user.setPhoneNumber("1112222333");
         user.setUID("0001");
         user.setDateTime("2022-11-12");
-        user.setTask("完成");
         user.setTowerNumber(5);
         int  effectedNum = userDao.updateUser(user);
         assertEquals(1,effectedNum);
@@ -95,7 +92,6 @@ class UserDaoTest {
         user.setPhoneNumber("1112222333");
         user.setUID("0001");
         user.setDateTime("2022-11-12");
-        user.setTask("完成");
         user.setTowerNumber(5);
         int  effectedNum = userDao.deleteUser(user);
         assertEquals(1,effectedNum);

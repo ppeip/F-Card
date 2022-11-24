@@ -1,7 +1,6 @@
 package com.lzj.demo.dao;
 
 import com.lzj.demo.entity.PersonalTask;
-import com.lzj.demo.entity.Question;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 

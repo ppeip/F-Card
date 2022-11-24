@@ -19,17 +19,22 @@ public class TaskServiceImpl  implements TaskService {
     @Autowired
     private TaskDao taskDao;
 
-
+    public List<Task> queryTaskByType(String type){
+        return taskDao.queryTaskByType(type);
+    }
 
     @Override
     public List<Task> queryTask() {
         return taskDao.queryTask();
     }
 
+
     @Override
     public Task queryTaskByTaskName(String taskName) {
         return taskDao.queryTaskByTaskName(taskName);
     }
+
+
 
     @Transactional
     @Override

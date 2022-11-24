@@ -10,6 +10,7 @@ import java.util.List;
  */
 public interface TaskService {
     List<Task> queryTask();
+    List<Task> queryTaskByType(String type);
     Task queryTaskByTaskName(String taskName);
     boolean insertTask(Task task);
     boolean updateTask(Task task);

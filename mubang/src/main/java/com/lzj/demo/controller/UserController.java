@@ -2,6 +2,7 @@ package com.lzj.demo.controller;
 
 
 
+import com.lzj.demo.dao.PersonalCardDao;
 import com.lzj.demo.entity.*;
 import com.lzj.demo.service.*;
 import net.sf.json.JSONObject;
@@ -33,7 +34,9 @@ public class UserController {
     private QuestionService questionService;
     @Autowired
     private CardInHandService cardInHandService;
-
+    @Autowired
+    private PersonalTaskService personalTaskService;
+    @CrossOrigin
     @RequestMapping(value = "/listuser", method = RequestMethod.GET)
     private Map<String,Object> listUser(){
         Map<String,Object> modelMap = new HashMap<>();
@@ -41,6 +44,8 @@ public class UserController {
         modelMap.put("userList",list);
         return modelMap;
     }
+
+    @CrossOrigin
     @RequestMapping(value = "/getuserbyname",method = RequestMethod.GET)
     private Map<String,Object> getUserByName(String UID){
         Map<String,Object> modelMap = new HashMap<>();
@@ -48,16 +53,19 @@ public class UserController {
         modelMap.put("user",user);
         return modelMap;
     }
+
+
+    @CrossOrigin
     @RequestMapping(value="/getopenid")
-    public Object openid(HttpServletRequest request){
-        String wxspAppid = "";
-        String wxspSecret = "";
+    public Object openid(@RequestParam(name = "code") String code){
+        String wxspAppid = "wx233e180759a7ea80";
+        String wxspSecret = "b991634fae3d8e781a36c4a8dc86fc98";
         Map<String,Object> map = new HashMap<>();
         Map<String,Object> datamap = new HashMap<>();
         try {
-            String code = request.getParameter("code");
             //请求参数
-            String params = "appid=" + wxspAppid + "&secret=" + wxspSecret + "&js_code=" + code + "&grant_type=" + "authorization_code";
+            String params = "appid=" + wxspAppid + "&secret=" + wxspSecret + "&js_code=" + code + "&grant_type=" + "authorization_code"
+                    + "&connect_redirect=1";
             //发送请求
             String sr = sendGet("https://api.weixin.qq.com/sns/jscode2session", params);
             //解析相应内容（转换成json对象）
@@ -73,12 +81,12 @@ public class UserController {
             map.put("data",datamap);
         }catch (Exception e){
             map.put("res", 0);
-            map.put("error", "error");
+            map.put("error", e.getMessage());
             map.put("data", null);
         }
         return map;
     }
-
+    @CrossOrigin
     @RequestMapping(value = "/create",method = RequestMethod.POST)
     private Map<String,Object> createUser(@RequestBody User user){
         Map<String,Object> modelMap = new HashMap<>();
@@ -86,6 +94,7 @@ public class UserController {
         return modelMap;
     }
 
+    @CrossOrigin
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     private Map<String,Object> loginUser(String UID){
         Map<String,Object> modelMap = new HashMap<>();
@@ -94,6 +103,7 @@ public class UserController {
         List<PersonalCard> personalCardList=personalCardService.queryPersonalCardByUID(UID);
         List<CardInHand> cardInHandList=cardInHandService.queryCardInHandByUID(UID);
         List<Question> questionList=questionService.queryQuestion();
+        List<PersonalTask> personalTasks = personalTaskService.queryPersonalTaskByUID(UID);
         if(user != null) {
             modelMap.put("success", true);
             modelMap.put("cardList", cardList);
@@ -101,21 +111,33 @@ public class UserController {
             modelMap.put("user", user);
             modelMap.put("questionList", questionList);
             modelMap.put("personalCardList", personalCardList);
+            modelMap.put("personalTaskList",personalTasks);
         }else{
             modelMap.put("success",false);
         }
         return modelMap;
     }
+
+    @CrossOrigin
     @RequestMapping(value = "/updateuser",method = RequestMethod.POST)
     private Map<String,Object> updateUser(@RequestBody User user){
         Map<String,Object> modelMap = new HashMap<>();
         modelMap.put("success",userService.updateUser(user));
         return modelMap;
     }
+
+    @CrossOrigin
     @RequestMapping(value = "/deleteuser",method = RequestMethod.POST)
     private Map<String,Object> deleteUser(@RequestBody User user){
         Map<String,Object> modelMap = new HashMap<>();
         modelMap.put("success",userService.deleteUser(user));
+        return modelMap;
+    }
+    @CrossOrigin
+    @RequestMapping(value = "/currenttime",method = RequestMethod.GET)
+    private Map<String,Object> currentTime(){
+        Map<String,Object> modelMap = new HashMap<>();
+        modelMap.put("time",userService.currentTime());
         return modelMap;
     }
 }

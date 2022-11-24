@@ -83,7 +83,7 @@ public class HttpRequest {
      *
      */
     public static String sendGet(String url) {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         BufferedReader in = null;
         try {
             URL realUrl = new URL(url);
@@ -106,7 +106,7 @@ public class HttpRequest {
             in = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
             String line;
             while ((line = in.readLine()) != null) {
-                result += line;
+                result.append(line);
             }
         } catch (Exception e) {
             System.out.println("发送GET请求出现异常！" + e);
@@ -122,7 +122,7 @@ public class HttpRequest {
                 e2.printStackTrace();
             }
         }
-        return result;
+        return result.toString();
     }
 
     /**

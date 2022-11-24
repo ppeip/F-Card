@@ -3,10 +3,7 @@ package com.lzj.demo.controller;
 import com.lzj.demo.entity.Card;
 import com.lzj.demo.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -22,6 +19,7 @@ public class CardController {
     @Autowired
     private CardService cardService;
 
+    @CrossOrigin
     @RequestMapping(value = "/listcard", method = RequestMethod.GET)
     private Map<String,Object> listCard(){
         Map<String,Object> modelMap = new HashMap<>();
@@ -31,7 +29,7 @@ public class CardController {
     }
 
 
-
+    @CrossOrigin
     @RequestMapping(value = "/getcardbyname",method = RequestMethod.GET)
     private Map<String,Object> getCardByName(String cardName){
         Map<String,Object> modelMap = new HashMap<>();
@@ -39,18 +37,24 @@ public class CardController {
         modelMap.put("card",card);
         return modelMap;
     }
+
+    @CrossOrigin
     @RequestMapping(value = "/insertcard",method = RequestMethod.POST)
     private Map<String,Object> insertCard(@RequestBody Card card){
         Map<String,Object> modelMap = new HashMap<>();
         modelMap.put("success",cardService.insertCard(card));
         return modelMap;
     }
+
+    @CrossOrigin
     @RequestMapping(value = "/updatecard",method = RequestMethod.POST)
     private Map<String,Object> updateCard(@RequestBody Card card){
         Map<String,Object> modelMap = new HashMap<>();
         modelMap.put("success",cardService.updateCard(card));
         return modelMap;
     }
+
+    @CrossOrigin
     @RequestMapping(value = "/deletecard",method = RequestMethod.POST)
     private Map<String,Object> deleteCard(@RequestBody Card card){
         Map<String,Object> modelMap = new HashMap<>();

@@ -3,19 +3,12 @@ package com.lzj.demo.controller;
 
 import com.lzj.demo.entity.*;
 import com.lzj.demo.service.*;
-import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static com.lzj.demo.utils.HttpRequest.sendGet;
 
 /**
  * @author lzj
@@ -27,6 +20,7 @@ public class TaskController {
     @Autowired
     private TaskService taskService;
 
+    @CrossOrigin
     @RequestMapping(value = "/listtask", method = RequestMethod.GET)
     private Map<String,Object> listTask(){
         Map<String,Object> modelMap = new HashMap<>();
@@ -34,6 +28,8 @@ public class TaskController {
         modelMap.put("taskList",list);
         return modelMap;
     }
+
+    @CrossOrigin
     @RequestMapping(value = "/gettaskbytaskname",method = RequestMethod.GET)
     private Map<String,Object> getTaskByTaskName(String taskName){
         Map<String,Object> modelMap = new HashMap<>();
@@ -41,6 +37,19 @@ public class TaskController {
         modelMap.put("task",task);
         return modelMap;
     }
+
+
+
+
+    @RequestMapping(value = "/gettaskbytype",method = RequestMethod.GET)
+    private Map<String,Object> getTaskByType(String type){
+        Map<String,Object> modelMap = new HashMap<>();
+        List<Task> task = taskService.queryTaskByType(type);
+        modelMap.put("taskList",task);
+        return modelMap;
+    }
+
+
 
     @RequestMapping(value = "/inserttask",method = RequestMethod.POST)
     private Map<String,Object> createUser(@RequestBody Task task){

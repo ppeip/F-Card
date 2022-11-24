@@ -13,25 +13,25 @@
     <insert id="insertPersonalTask" useGeneratedKeys="true" keyProperty="UID"
             keyColumn="UID" parameterType="com.lzj.demo.entity.PersonalTask">
         INSERT INTO
-            mybatis.personaltask(`UID`,`taskname`,`current`,`end`,`type`,`reward`,`date`)
+            mybatis.personaltask(`UID`,`taskName`,`current`,`end`,`type`,`reward`,`date`)
             VALUE
-            (#{UID},#{taskname},#{current},#{end},#{type},#{reward},#{date})
+            (#{UID},#{taskName},#{current},#{end},#{type},#{reward},#{date})
     </insert>
     <update id="updatePersonalTask" parameterType="com.lzj.demo.entity.PersonalTask">
         update mybatis.personaltask
         <set>
-            <if test="date!=null">date=#{date},</if>
-            <if test="current!=null">current=#{current},</if>
-            <if test="end!=null">end=#{end},</if>
-            <if test="type!=null">type=#{type},</if>
+            <if test="date!=null">`date`=#{date},</if>
+            <if test="current!=null">`current`=#{current},</if>
+            <if test="end!=null">`end`=#{end},</if>
+            <if test="taskName!=null">taskName=#{taskName},</if>
             <if test="reward!=null">reward=#{reward},</if>
         </set>
-        where UID=#{UID} AND taskname=#{taskname}
+        where UID=#{UID} AND type=#{type}
     </update>
     <delete id="deletePersonalTask" parameterType="com.lzj.demo.entity.PersonalTask">
         DELETE FROM
             mybatis.personaltask
         WHERE
-            UID=#{UID} AND taskname=#{taskname}
+            UID=#{UID} AND taskName=#{taskName}
     </delete>
 </mapper>
