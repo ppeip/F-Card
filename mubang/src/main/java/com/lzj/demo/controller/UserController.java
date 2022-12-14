@@ -33,9 +33,9 @@ public class UserController {
     @Autowired
     private QuestionService questionService;
     @Autowired
-    private CardInHandService cardInHandService;
-    @Autowired
     private PersonalTaskService personalTaskService;
+    @Autowired
+    private RankService rankService;
     @CrossOrigin
     @RequestMapping(value = "/listuser", method = RequestMethod.GET)
     private Map<String,Object> listUser(){
@@ -86,11 +86,22 @@ public class UserController {
         }
         return map;
     }
+
     @CrossOrigin
     @RequestMapping(value = "/create",method = RequestMethod.POST)
     private Map<String,Object> createUser(@RequestBody User user){
         Map<String,Object> modelMap = new HashMap<>();
         modelMap.put("success",userService.insertUser(user));
+        Rank rank = new Rank();
+        rank.setRank(999);
+        rank.setName(user.getName());
+        rank.setGrade(0);
+        rank.setCollege(user.getCollege());
+        rank.setCollegeInfluence(user.getCollegeInfluence());
+        rankService.insertRank(rank);
+        personalTaskService.insertroutinePersonalTask(user);
+        personalTaskService.insertweekPersonalTask(user);
+        personalCardService.insertPersonalCard(new PersonalCard());
         return modelMap;
     }
 
@@ -101,13 +112,13 @@ public class UserController {
         User user = userService.queryUserByUid(UID);
         List<Card> cardList=cardService.queryCard();
         List<PersonalCard> personalCardList=personalCardService.queryPersonalCardByUID(UID);
-        List<CardInHand> cardInHandList=cardInHandService.queryCardInHandByUID(UID);
         List<Question> questionList=questionService.queryQuestion();
         List<PersonalTask> personalTasks = personalTaskService.queryPersonalTaskByUID(UID);
         if(user != null) {
+            user.setDateTime(userService.currentTime());
+            userService.updateUser(user);
             modelMap.put("success", true);
             modelMap.put("cardList", cardList);
-            modelMap.put("cardInHandList", cardInHandList);
             modelMap.put("user", user);
             modelMap.put("questionList", questionList);
             modelMap.put("personalCardList", personalCardList);

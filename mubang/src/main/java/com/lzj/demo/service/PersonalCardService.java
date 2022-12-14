@@ -18,6 +18,9 @@ public interface PersonalCardService {
     boolean deletePersonalCard(String UID,String cardName);
     PersonalCard rollCard(User user);
     List<PersonalCard> queryPersonalCardByUID(String UID);
+    List<PersonalCard> queryCardInHandByUID(String UID);
     PersonalCard dispatchCard(PersonalCard personalCard,String dismethod);
     String finishResult(PersonalCard personalCard,User user);
+    User updatePersonalCardByUid(User user,int num);
+
 }

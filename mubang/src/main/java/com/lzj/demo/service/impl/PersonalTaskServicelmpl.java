@@ -79,7 +79,7 @@ public class PersonalTaskServicelmpl implements PersonalTaskService {
                     String uid = user.getUID();
                     List<Task> task = taskdao.queryTaskByType("周常");
                     Task userTask = task.get(new Random().nextInt(task.size()));
-                    personalTaskDao.updatePersonalTask(
+                    personalTaskDao.insertPersonalTask(
                             new PersonalTask(uid, userTask.getTaskName(), userTask.getCurrent(),
                                     userTask.getEnd(), userTask.getType(), userTask.getReward(),
                                     df.format(d.getTime())));
@@ -89,6 +89,42 @@ public class PersonalTaskServicelmpl implements PersonalTaskService {
             throw new RuntimeException("周常更新失败" + e);
         }
     }
+
+    @Transactional
+    @Override
+    public void insertroutinePersonalTask(User user) {
+        try {
+            Date d = new Date();
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            String uid = user.getUID();
+            List<Task> task = taskdao.queryTaskByType("日常");
+            Task userTask = task.get(new Random().nextInt(task.size()));
+            personalTaskDao.insertPersonalTask(
+                    new PersonalTask(uid, userTask.getTaskName(), userTask.getCurrent(),
+                            userTask.getEnd(), userTask.getType(), userTask.getReward(),
+                            df.format(d.getTime())));
+        } catch (Exception e) {
+            throw new RuntimeException("日常初始化失败" + e);
+        }
+    }
+    @Transactional
+    @Override
+    public void insertweekPersonalTask(User user) {
+        try {
+            Date d = new Date();
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            String uid = user.getUID();
+            List<Task> task = taskdao.queryTaskByType("周常");
+            Task userTask = task.get(new Random().nextInt(task.size()));
+            personalTaskDao.insertPersonalTask(
+                    new PersonalTask(uid, userTask.getTaskName(), userTask.getCurrent(),
+                            userTask.getEnd(), userTask.getType(), userTask.getReward(),
+                            df.format(d.getTime())));
+        } catch (Exception e) {
+            throw new RuntimeException("周常初始化失败" + e);
+        }
+    }
+
 
     @Transactional
     @Override

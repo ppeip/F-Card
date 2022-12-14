@@ -48,4 +48,30 @@
         select * from mybatis.personalCard
         where UID=#{UID}
     </select>
+    <select id="queryCardInHandByUID" resultType="com.lzj.demo.entity.PersonalCard">
+        select * from mybatis.personalCard
+        where UID=#{UID} AND situation="出战"
+    </select>
+    <update id="updatePersonalCard5" parameterType="com.lzj.demo.entity.PersonalCard">
+        update mybatis.personalCard
+        <set>
+            <if test="experience!=null">experience=experience+5,</if>
+        </set>
+        where UID=#{UID} AND situation="出战"
+    </update>
+    <update id="updatePersonalCard2" parameterType="com.lzj.demo.entity.PersonalCard">
+        update mybatis.personalCard
+        <set>
+            <if test="experience!=null">experience=experience+2,</if>
+        </set>
+        where UID=#{UID} AND situation="出战"
+    </update>
+    <update id="updatePersonalCard10" parameterType="com.lzj.demo.entity.PersonalCard">
+        update mybatis.personalCard
+        <set>
+            <if test="experience!=null">experience=experience+10,</if>
+        </set>
+        where UID=#{UID} AND situation="出战"
+    </update>
+
 </mapper>

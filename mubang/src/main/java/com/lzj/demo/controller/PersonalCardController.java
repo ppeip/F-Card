@@ -28,6 +28,17 @@ public class PersonalCardController {
         return modelMap;
     }
 
+
+    @RequestMapping(value = "/querycardinhandbyuid", method = RequestMethod.GET)
+    @CrossOrigin
+    private Map<String,Object> queryCardInHandByUID(String UID){
+        Map<String,Object> modelMap = new HashMap<>();
+        List<PersonalCard> list = personalCardService.queryCardInHandByUID(UID);
+        modelMap.put("cardinhandList",list);
+        return modelMap;
+    }
+
+
     @CrossOrigin
     @RequestMapping(value = "/getpersonalcardbyname",method = RequestMethod.GET)
     private Map<String,Object> getPersonalCardByName(@RequestParam(value = "UID") String UID, @RequestParam(value = "cardName") String cardName){
@@ -62,12 +73,22 @@ public class PersonalCardController {
     }
 
     @CrossOrigin
+    @RequestMapping(value = "/updatepersonalcardbyuid",method = RequestMethod.POST)
+    private Map<String,Object> updatePersonalCardByUID(@RequestBody User user){
+        Map<String,Object> modelMap = new HashMap<>();
+        modelMap.put("user",personalCardService.updatePersonalCardByUid(user,user.getTowerNumber()));
+        modelMap.put("personalCard",personalCardService.queryCardInHandByUID(user.getUID()));
+        return modelMap;
+    }
+
+    @CrossOrigin
     @RequestMapping(value = "/deletepersonalcard",method = RequestMethod.GET)
     private Map<String,Object> deletePersonalCard(@RequestParam(value = "UID") String UID, @RequestParam(value = "cardName") String cardName){
         Map<String,Object> modelMap = new HashMap<>();
         modelMap.put("success",personalCardService.deletePersonalCard(UID,cardName));
         return modelMap;
     }
+
 
     @CrossOrigin
     @RequestMapping(value = "/rollpersonalcard",method = RequestMethod.POST)
@@ -85,4 +106,6 @@ public class PersonalCardController {
         modelMap.put("finishResult",personalCardService.finishResult(personalCard,user));
         return modelMap;
     }
+
+
 }
